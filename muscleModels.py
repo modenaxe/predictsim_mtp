@@ -74,7 +74,7 @@ class DeGrooteFregly2016MuscleModel:
             self.tendonCompliance * (referenceNormTendonLength - 0.995)) 
             - 0.25 + self.tendonShift)
         
-        assert np.alltrue(
+        assert np.all(
             np.abs(referenceNormTendonForce - 
                    adjustedNormTendonForce_afterShift) 
             < 1e-12), "Error when shifting tendon curve"

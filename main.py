@@ -731,83 +731,83 @@ for case in cases:
         a = opti.variable(nMuscles, N+1)
         opti.subject_to(opti.bounded(lbAk, ca.vec(a), ubAk))
         opti.set_initial(a, gA.to_numpy().T)
-        assert np.alltrue(lbAk <= ca.vec(gA.to_numpy().T).full()), (
+        assert np.all(lbAk <= ca.vec(gA.to_numpy().T).full()), (
             "Error lower bound muscle activation")
-        assert np.alltrue(ubAk >= ca.vec(gA.to_numpy().T).full()), (
+        assert np.all(ubAk >= ca.vec(gA.to_numpy().T).full()), (
             "Error upper bound muscle activation")
         # Muscle activation at collocation points.
         a_col = opti.variable(nMuscles, d*N)
         opti.subject_to(opti.bounded(lbAj, ca.vec(a_col), ubAj))
         opti.set_initial(a_col, gACol.to_numpy().T)
-        assert np.alltrue(lbAj <= ca.vec(gACol.to_numpy().T).full()), (
+        assert np.all(lbAj <= ca.vec(gACol.to_numpy().T).full()), (
             "Error lower bound muscle activation collocation points")
-        assert np.alltrue(ubAj >= ca.vec(gACol.to_numpy().T).full()), (
+        assert np.all(ubAj >= ca.vec(gACol.to_numpy().T).full()), (
             "Error upper bound muscle activation collocation points")
         # Tendon force at mesh points.
         normF = opti.variable(nMuscles, N+1)
         opti.subject_to(opti.bounded(lbFk, ca.vec(normF), ubFk))
         opti.set_initial(normF, gF.to_numpy().T)
-        assert np.alltrue(lbFk <= ca.vec(gF.to_numpy().T).full()), (
+        assert np.all(lbFk <= ca.vec(gF.to_numpy().T).full()), (
             "Error lower bound muscle force")
-        assert np.alltrue(ubFk >= ca.vec(gF.to_numpy().T).full()), (
+        assert np.all(ubFk >= ca.vec(gF.to_numpy().T).full()), (
             "Error upper bound muscle force")
         # Tendon force at collocation points.
         normF_col = opti.variable(nMuscles, d*N)
         opti.subject_to(opti.bounded(lbFj, ca.vec(normF_col), ubFj))
         opti.set_initial(normF_col, gFCol.to_numpy().T)
-        assert np.alltrue(lbFj <= ca.vec(gFCol.to_numpy().T).full()), (
+        assert np.all(lbFj <= ca.vec(gFCol.to_numpy().T).full()), (
             "Error lower bound muscle force collocation points")
-        assert np.alltrue(ubFj >= ca.vec(gFCol.to_numpy().T).full()), (
+        assert np.all(ubFj >= ca.vec(gFCol.to_numpy().T).full()), (
             "Error upper bound muscle force collocation points")
         # Joint position at mesh points.
         Qs = opti.variable(nJoints, N+1)
         opti.subject_to(opti.bounded(lbQsk, ca.vec(Qs), ubQsk))
         opti.set_initial(Qs, gQs.to_numpy().T)
         if not guessType == 'coldStart':
-            assert np.alltrue(lbQsk <= ca.vec(gQs.to_numpy().T).full()), (
+            assert np.all(lbQsk <= ca.vec(gQs.to_numpy().T).full()), (
                 "Error lower bound joint position")
-            assert np.alltrue(ubQsk >= ca.vec(gQs.to_numpy().T).full()), (
+            assert np.all(ubQsk >= ca.vec(gQs.to_numpy().T).full()), (
                 "Error upper bound joint position")
         # Joint position at collocation points.
         Qs_col = opti.variable(nJoints, d*N)
         opti.subject_to(opti.bounded(lbQsj, ca.vec(Qs_col), ubQsj))
         opti.set_initial(Qs_col, gQsCol.to_numpy().T)
         if not guessType == 'coldStart':
-            assert np.alltrue(lbQsj <= ca.vec(gQsCol.to_numpy().T).full()), (
+            assert np.all(lbQsj <= ca.vec(gQsCol.to_numpy().T).full()), (
                 "Error lower bound joint position collocation points")
-            assert np.alltrue(ubQsj >= ca.vec(gQsCol.to_numpy().T).full()), (
+            assert np.all(ubQsj >= ca.vec(gQsCol.to_numpy().T).full()), (
                 "Error upper bound joint position collocation points")
         # Joint velocity at mesh points.
         Qds = opti.variable(nJoints, N+1)
         opti.subject_to(opti.bounded(lbQdsk, ca.vec(Qds), ubQdsk))
         opti.set_initial(Qds, gQds.to_numpy().T)
-        assert np.alltrue(lbQdsk <= ca.vec(gQds.to_numpy().T).full()), (
+        assert np.all(lbQdsk <= ca.vec(gQds.to_numpy().T).full()), (
             "Error lower bound joint velocity")
-        assert np.alltrue(ubQdsk >= ca.vec(gQds.to_numpy().T).full()), (
+        assert np.all(ubQdsk >= ca.vec(gQds.to_numpy().T).full()), (
             "Error upper bound joint velocity")
         # Joint velocity at collocation points.
         Qds_col = opti.variable(nJoints, d*N)
         opti.subject_to(opti.bounded(lbQdsj, ca.vec(Qds_col), ubQdsj))
         opti.set_initial(Qds_col, gQdsCol.to_numpy().T)
-        assert np.alltrue(lbQdsj <= ca.vec(gQdsCol.to_numpy().T).full()), (
+        assert np.all(lbQdsj <= ca.vec(gQdsCol.to_numpy().T).full()), (
             "Error lower bound joint velocity collocation points")
-        assert np.alltrue(ubQdsj >= ca.vec(gQdsCol.to_numpy().T).full()), (
+        assert np.all(ubQdsj >= ca.vec(gQdsCol.to_numpy().T).full()), (
             "Error upper bound joint velocity collocation points")
         # Arm activation at mesh points.
         aArm = opti.variable(nArmJoints, N+1)
         opti.subject_to(opti.bounded(lbArmAk, ca.vec(aArm), ubArmAk))
         opti.set_initial(aArm, gArmA.to_numpy().T)
-        assert np.alltrue(lbArmAk <= ca.vec(gArmA.to_numpy().T).full()), (
+        assert np.all(lbArmAk <= ca.vec(gArmA.to_numpy().T).full()), (
             "Error lower bound arm activation")
-        assert np.alltrue(ubArmAk >= ca.vec(gArmA.to_numpy().T).full()), (
+        assert np.all(ubArmAk >= ca.vec(gArmA.to_numpy().T).full()), (
             "Error upper bound arm activation")
         # Arm activation at collocation points.
         aArm_col = opti.variable(nArmJoints, d*N)
         opti.subject_to(opti.bounded(lbArmAj, ca.vec(aArm_col), ubArmAj))
         opti.set_initial(aArm_col, gArmACol.to_numpy().T)
-        assert np.alltrue(lbArmAj <= ca.vec(gArmACol.to_numpy().T).full()), (
+        assert np.all(lbArmAj <= ca.vec(gArmACol.to_numpy().T).full()), (
             "Error lower bound arm activation collocation points")
-        assert np.alltrue(ubArmAj >= ca.vec(gArmACol.to_numpy().T).full()), (
+        assert np.all(ubArmAj >= ca.vec(gArmACol.to_numpy().T).full()), (
             "Error upper bound arm activation collocation points")
         
         #######################################################################
@@ -816,17 +816,17 @@ for case in cases:
         aDt = opti.variable(nMuscles, N)
         opti.subject_to(opti.bounded(lbADtk, ca.vec(aDt), ubADtk))
         opti.set_initial(aDt, gADt.to_numpy().T)
-        assert np.alltrue(lbADtk <= ca.vec(gADt.to_numpy().T).full()), (
+        assert np.all(lbADtk <= ca.vec(gADt.to_numpy().T).full()), (
             "Error lower bound muscle activation derivative")
-        assert np.alltrue(ubADtk >= ca.vec(gADt.to_numpy().T).full()), (
+        assert np.all(ubADtk >= ca.vec(gADt.to_numpy().T).full()), (
             "Error upper bound muscle activation derivative")
         # Arm excitation at mesh points.
         eArm = opti.variable(nArmJoints, N)
         opti.subject_to(opti.bounded(lbArmEk, ca.vec(eArm), ubArmEk))
         opti.set_initial(eArm, gArmE.to_numpy().T)
-        assert np.alltrue(lbArmEk <= ca.vec(gArmE.to_numpy().T).full()), (
+        assert np.all(lbArmEk <= ca.vec(gArmE.to_numpy().T).full()), (
             "Error lower bound arm excitation")
-        assert np.alltrue(ubArmEk >= ca.vec(gArmE.to_numpy().T).full()), (
+        assert np.all(ubArmEk >= ca.vec(gArmE.to_numpy().T).full()), (
             "Error upper bound arm excitation")
         
         #######################################################################
@@ -835,18 +835,18 @@ for case in cases:
         normFDt_col = opti.variable(nMuscles, d*N)
         opti.subject_to(opti.bounded(lbFDtj, ca.vec(normFDt_col), ubFDtj))
         opti.set_initial(normFDt_col, gFDtCol.to_numpy().T)
-        assert np.alltrue(lbFDtj <= ca.vec(gFDtCol.to_numpy().T).full()), (
+        assert np.all(lbFDtj <= ca.vec(gFDtCol.to_numpy().T).full()), (
             "Error lower bound muscle force derivative")
-        assert np.alltrue(ubFDtj >= ca.vec(gFDtCol.to_numpy().T).full()), (
+        assert np.all(ubFDtj >= ca.vec(gFDtCol.to_numpy().T).full()), (
             "Error upper bound muscle force derivative")
         # Joint velocity derivative (acceleration) at collocation points.
         Qdds_col = opti.variable(nJoints, d*N)
         opti.subject_to(opti.bounded(lbQddsj, ca.vec(Qdds_col),
                                      ubQddsj))
         opti.set_initial(Qdds_col, gQddsCol.to_numpy().T)
-        assert np.alltrue(lbQddsj <= ca.vec(gQddsCol.to_numpy().T).full()), (
+        assert np.all(lbQddsj <= ca.vec(gQddsCol.to_numpy().T).full()), (
             "Error lower bound joint velocity derivative")
-        assert np.alltrue(ubQddsj >= ca.vec(gQddsCol.to_numpy().T).full()), (
+        assert np.all(ubQddsj >= ca.vec(gQddsCol.to_numpy().T).full()), (
             "Error upper bound joint velocity derivative")
             
         ####################################################################### 
@@ -1351,10 +1351,10 @@ for case in cases:
         GRF_opt = F1_out[idxGRF, :]
         
         # Sanity checks.
-        assert np.alltrue(np.abs(armT) < 10**(-tol)), (
+        assert np.all(np.abs(armT) < 10**(-tol)), (
             "Error arm torques balance")
         if withMTP:
-            assert np.alltrue(np.abs(mtpT) < 10**(-tol)), (
+            assert np.all(np.abs(mtpT) < 10**(-tol)), (
                 "error mtp torques balance")   
         
         # %% Reconstruct entire gait cycle starting at right heel-strike.
@@ -1502,7 +1502,7 @@ for case in cases:
                                    F_GC[:, k], FDt_GC[:, k]))   
                  
             if stats['success'] == True:
-                assert np.alltrue(
+                assert np.all(
                     np.abs(hillEquilibriumk_GC.full()) <= 10**(tol)), (
                         "Error in Hill equilibrium")
                  
@@ -1542,13 +1542,13 @@ for case in cases:
             mechWRate[0, k] = mechWRatek_allMuscles            
             
         # Integrate.
-        metERatePerMuscle_int = np.trapz(
+        metERatePerMuscle_int = np.trapezoid(
             metERatePerMuscle, tgrid_GC)
-        tolMetERate_int = np.trapz(tolMetERate, tgrid_GC)
-        actHeatRate_int = np.trapz(actHeatRate, tgrid_GC)
-        mtnHeatRate_int = np.trapz(mtnHeatRate, tgrid_GC)
-        shHeatRate_int = np.trapz(shHeatRate, tgrid_GC)
-        mechWRate_int = np.trapz(mechWRate, tgrid_GC)
+        tolMetERate_int = np.trapezoid(tolMetERate, tgrid_GC)
+        actHeatRate_int = np.trapezoid(actHeatRate, tgrid_GC)
+        mtnHeatRate_int = np.trapezoid(mtnHeatRate, tgrid_GC)
+        shHeatRate_int = np.trapezoid(shHeatRate, tgrid_GC)
+        mechWRate_int = np.trapezoid(mechWRate, tgrid_GC)
         
         # Total distance traveled.
         distTraveled_GC = (Qs_GC_rad[joints.index('pelvis_tx'),-1] - 
@@ -1734,7 +1734,7 @@ for case in cases:
                      armAccelerationTerm_opt_all.full())
         
         if stats['success'] == True:
-            assert np.alltrue(
+            assert np.all(
                     np.abs(JAll_opt[0][0] - stats['iterations']['obj'][-1]) 
                     <= 1e-6), "decomposition cost"
         
